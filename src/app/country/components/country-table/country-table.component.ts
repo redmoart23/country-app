@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
+import { RestCountryResponse } from '../../interfaces/rest-countries.interface';
 
 @Component({
   selector: 'country-table',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   templateUrl: './country-table.component.html',
 })
 export class CountryTableComponent {
-
+  countries = input.required<RestCountryResponse[]>();
 }
