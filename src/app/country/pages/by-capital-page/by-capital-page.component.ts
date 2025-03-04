@@ -3,6 +3,7 @@ import { SearchInputComponent } from '../../components/search-input/search-input
 import { CountryTableComponent } from '../../components/country-table/country-table.component';
 import { CountryService } from '../../services/country.service';
 import { RestCountryResponse } from '../../interfaces/rest-countries.interface';
+import { Country } from '../../interfaces/country.interface';
 
 @Component({
   selector: 'app-by-capital-page',
@@ -14,7 +15,7 @@ export class ByCapitalPageComponent {
 
   isLoading = signal(false);
   hasError = signal<string | null>(null);
-  countries = signal<RestCountryResponse[]>([]);
+  countries = signal<Country[]>([]);
 
   async onSearch(query: string) {
     if (this.isLoading()) return;

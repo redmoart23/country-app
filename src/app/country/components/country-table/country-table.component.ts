@@ -1,11 +1,12 @@
 import { Component, input } from '@angular/core';
-import { RestCountryResponse } from '../../interfaces/rest-countries.interface';
+import { Country } from '../../interfaces/country.interface';
+import { DecimalPipe } from '@angular/common';
 
 @Component({
   selector: 'country-table',
-  imports: [],
+  imports: [DecimalPipe],
   templateUrl: './country-table.component.html',
 })
 export class CountryTableComponent {
-  countries = input.required<RestCountryResponse[]>();
+  countries = input.required<Country[]>();
 }

@@ -3,7 +3,7 @@
     <thead>
       <tr>
         <th>#</th>
-        <th>icon</th>
+        <th>Código</th>
         <th>Bandera</th>
         <th>Nombre</th>
         <th>Capital</th>
@@ -17,15 +17,15 @@
         <td>{{ index + 1 }}</td>
         <td>{{ country.cca2 }}</td>
         <td>
-          <img
-            class="w-10"
-            [src]="country.flags.svg"
-            [alt]="country.name.common"
-          />
+          <img class="w-10" [src]="country.flag" [alt]="country.name" />
         </td>
-        <td>{{ country.name.common }}</td>
-        <td>{{ country.capital[0] }}</td>
-        <td>{{ country.population }}</td>
+        <td>{{ country.name }}</td>
+        <td>{{ country.capital }}</td>
+        <td>
+          <span class="badge badge-outline badge-secondary"
+            >{{ country.population | number }}
+          </span>
+        </td>
         <td>
           <a class="link-primary cursor-pointer" href="">Más información</a>
         </td>
