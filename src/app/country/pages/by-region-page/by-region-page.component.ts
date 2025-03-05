@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
-import { CountryTableComponent } from "../../components/country-table/country-table.component";
-import { SearchInputComponent } from "../../components/search-input/search-input.component";
+import { Component, signal } from '@angular/core';
+import { CountryTableComponent } from '../../components/country-table/country-table.component';
+import { Country } from '../../interfaces/country.interface';
 
 @Component({
   selector: 'app-by-region-page',
@@ -8,5 +8,5 @@ import { SearchInputComponent } from "../../components/search-input/search-input
   templateUrl: './by-region-page.component.html',
 })
 export class ByRegionPageComponent {
-
+  countries = signal<Country[]>([]);
 }

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { RestCountryResponse } from '../interfaces/rest-countries.interface';
 import { CountryMapper } from '../mappers/country.mapper';
-import { map, Observable } from 'rxjs';
+import { catchError, map, Observable, throwError } from 'rxjs';
 import type { Country } from '../interfaces/country.interface';
 
 const API_URL = 'https://restcountries.com/v3.1';
@@ -20,6 +20,28 @@ export class CountryService {
       `${API_URL}/capital/${term}`
     );
 
-    return response.pipe(map(CountryMapper.mapperToCountries));
+    return response.pipe(
+      map((resp) => CountryMapper.mapperToCountries(resp)),
+      catchError((error) => {
+        console.error('Error fetching countries:', error);
+        return throwError(() => new Error(`No matches found for ${query}`));
+      })
+    );
+  }
+
+  async searchByCountry(query: string): Promise<Observable<Country[]>> {
+    const term = query.trim().toLowerCase();
+
+    const response = this.http.get<RestCountryResponse[]>(
+      `${API_URL}/name/${term}`
+    );
+
+    return response.pipe(
+      map((resp) => CountryMapper.mapperToCountries(resp)),
+      catchError((error) => {
+        console.error('Error fetching countries:', error);
+        return throwError(() => new Error(`No matches found for ${query}`));
+      })
+    );
   }
 }
