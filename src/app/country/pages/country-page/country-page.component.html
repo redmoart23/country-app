@@ -1,1 +1,12 @@
-<p>country-page works!</p>
+@if (countryResource.error()){
+<section class="flex flex-col items-center justify-center mt-10">
+  <i class="fa-solid fa-triangle-exclamation fa-3x"></i>
+  <h1>Country not found</h1>
+  <a href="/country/by-capital" class="link-primary cursor-pointer">Go back</a>
+</section>
+
+<!--  -->
+} @if (countryResource.hasValue()) {
+<h2>Name: {{ countryResource.value()!.name }}</h2>
+
+}

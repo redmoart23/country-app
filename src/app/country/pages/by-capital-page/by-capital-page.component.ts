@@ -4,7 +4,8 @@ import { CountryTableComponent } from '../../components/country-table/country-ta
 import { CountryService } from '../../services/country.service';
 import { RestCountryResponse } from '../../interfaces/rest-countries.interface';
 import { Country } from '../../interfaces/country.interface';
-import { firstValueFrom } from 'rxjs';
+import { firstValueFrom, of } from 'rxjs';
+import { rxResource } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-by-capital-page',
@@ -16,6 +17,18 @@ export class ByCapitalPageComponent {
 
   query = signal('');
 
+  //observables
+  // countryResource = rxResource({
+  //   request: () => ({ query: this.query() }),
+  //   loader: ({ request }) => {
+  //     if (!request.query) return of([]);
+
+  //     return this.countryService.searchByCapital(request.query)
+  //   },
+  // });
+
+
+  //promises
   countryResource = resource({
     request: () => ({ query: this.query() }),
     loader: async ({ request }) => {
