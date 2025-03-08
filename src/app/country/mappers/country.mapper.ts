@@ -4,7 +4,7 @@ import { RestCountryResponse } from '../interfaces/rest-countries.interface';
 export class CountryMapper {
   static mapperToCountry(resCountry: RestCountryResponse): Country {
     return {
-      capital: resCountry.capital[0],
+      capital: resCountry.capital?.join(','),
       cca2: resCountry.cca2,
       flag: resCountry.flags.png,
       flagSvg: resCountry.flags.svg,

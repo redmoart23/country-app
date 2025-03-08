@@ -1,2 +1,24 @@
+<section>
+  <nav class="p-4 w-full">
+    <ul class="menu bg-base-200 sm:menu-horizontal rounded-box">
+      @for (item of regions; track $index) {
+      <li>
+        <button
+          class="btn btn-outline mr-2 w-[100px]"
+          (click)="selectedRegion.set(item)"
+          [class.btn-primary]="selectedRegion() === item"
+        >
+          {{ item }}
+        </button>
+      </li>
+      }
+    </ul>
+  </nav>
+</section>
 
-<country-table [countries]="countries()" />
+<country-table
+  [errorMesssage]="countryResource.error()"
+  [isLoading]="countryResource.isLoading()"
+  [isEmpty]="countryResource.value()?.length === 0"
+  [countries]="countryResource.value() ?? []"
+/>
